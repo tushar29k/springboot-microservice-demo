@@ -1,0 +1,17 @@
+# Local profile: run the packaged jar with no external services.
+# H2 in-memory db + in-memory cache. For a real run, use docker compose
+# (default profile: PostgreSQL + Redis).
+spring:
+  datasource:
+    url: jdbc:h2:mem:ordersdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: false
+  cache:
+    type: simple

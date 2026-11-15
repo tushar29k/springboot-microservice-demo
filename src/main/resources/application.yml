@@ -1,0 +1,26 @@
+# Order microservice — default profile (PostgreSQL + Redis via docker compose).
+# Every value is overridable by environment variable.
+spring:
+  application:
+    name: springboot-microservice-demo
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ordersdb}
+    username: ${SPRING_DATASOURCE_USERNAME:orders}
+    password: ${SPRING_DATASOURCE_PASSWORD:orders}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  # Cache backend: redis under docker compose, simple (in-memory) when run bare.
+  # Set CACHE_TYPE=simple to run without Redis.
+  cache:
+    type: ${CACHE_TYPE:simple}
+
+server:
+  port: 8080

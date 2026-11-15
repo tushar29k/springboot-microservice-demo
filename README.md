@@ -42,6 +42,7 @@ against the in-memory profile:
 
 ```bash
 mvn test
+mvn package -DskipTests
 SPRING_PROFILES_ACTIVE=local java -jar target/springboot-microservice-demo-0.1.0.jar
 ```
 
